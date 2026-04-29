@@ -3,6 +3,15 @@ body {
     font-family: Verdana;
 }
 
+:root {
+  --blue-primary: #4e7df0; 
+  --blue-hover: #3b6cd8;   
+  --border-color: #e0e6ed;
+  --text-main: #ffffff;
+  --text-input: #555555;
+  --placeholder-color: #aaaaaa;
+}
+
 .DivDos {
     display: flex;
     flex-direction: row;
@@ -13,8 +22,8 @@ body {
     top: 0;
     width: 225px;
     height: 100vh;
-    background-color: #4082F0;
-    color: white;
+    background-color: var(--blue-primary);
+    color: var(--text-main);
     padding: 10px;
 }
 
@@ -28,7 +37,7 @@ body {
     flex-direction: column;
     padding: 15px;
     gap: 5px;
-    color: white;
+    color: var(--text-main);
 }
 
 .body {
@@ -48,22 +57,39 @@ body {
 .parteTasca {
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    border-radius: 8px;
     width: 1150px;
     height: 100px;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
+                0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .NovaT {
+    border: none; 
+    outline: none; 
     height: 35px;
     width: 150px;
-    background-color: #4082F0;
-    border-radius: 2px;
-    border: 1px solid white;
-    color: white;
+    border-radius: 4px;
+    background-color: var(--blue-primary);
+    color: var(--text-main);
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
+                0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.NovaT:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 
+                0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.NovaT:active{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(0px);
 }
 
 
@@ -74,10 +100,24 @@ body {
 }
 
 input {
-  padding: 8px;
-  border: 1px solid #ccc;
+    padding: 8px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.input:focus {
+    border-color: var(--blue-primary); 
+    box-shadow: 0 0 0 3px rgba(78, 125, 240, 0.2);
 }
 
 .conjunt button:nth-child(2) {
     width: 80px;
+}
+
+.NovaT, input {
+    transition: all 0.3s ease;
 }
