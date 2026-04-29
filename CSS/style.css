@@ -3,6 +3,12 @@ body {
     font-family: Verdana;
 }
 
+.DivDos {
+    display: flex;
+    flex-direction: row;
+    gap: 555px;
+}
+
 .sidebar {
     position: sticky;
     width: 225px;
@@ -23,5 +29,9 @@ body {
     padding: 15px;
     gap: 5px;
     color: white;
+}
+
+.body {
+    align-items: center;
 }
 
