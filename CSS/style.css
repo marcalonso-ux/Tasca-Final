@@ -6,11 +6,11 @@ body {
 .DivDos {
     display: flex;
     flex-direction: row;
-    gap: 555px;
 }
 
 .sidebar {
     position: sticky;
+    top: 0;
     width: 225px;
     height: 100vh;
     background-color: #4082F0;
@@ -32,6 +32,15 @@ body {
 }
 
 .body {
-    align-items: center;
+    flex-grow: 1;        
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    padding-top: 20px;
 }
 
+.body p:nth-child(1) {
+    font-family: Verdana;
+    font-size: 25px;
+    font-weight: bold;
+}
