@@ -44,3 +44,40 @@ body {
     font-size: 25px;
     font-weight: bold;
 }
+
+.parteTasca {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 1150px;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.NovaT {
+    height: 35px;
+    width: 150px;
+    background-color: #4082F0;
+    border-radius: 2px;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+
+.conjunt {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.conjunt button:nth-child(2) {
+    width: 80px;
+}
