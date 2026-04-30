@@ -124,6 +124,14 @@ input {
     transition: all 0.3s ease;
 }
 
+.pendent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 85px;
+}
 
 .parteCuadrado {
     display: flex;
