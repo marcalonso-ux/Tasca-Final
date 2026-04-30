@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <section>
+    <section class="DivDos">
         <div class="sidebar">
             <p>MENÚ</p>
             <li>
@@ -23,6 +23,22 @@
                 <a href="categories.html"onclick="IrCateg()">Categories</a>
             </li>
         </div>
+
+        <section class="body">
+            <p>Gestió de Categories</p>
+
+            <div class="parteCuadrado">
+                <p>Nova Categoria:</p>
+                <input type="text" class="escribir"> 
+                <div class="colores">
+                    <label for="color-picker">Color de la Categoría:</label>
+                    <input type="color" id="color-picker" name="color-picker" value="#000000">   
+                </div>
+                <button class="NovaT">Afegir Categoria</button>               
+            </div>
+        </section>
+        
+        
     </section>
     <script type="module" src="JS/index.js"></script>
 

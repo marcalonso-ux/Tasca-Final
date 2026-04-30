@@ -121,3 +121,71 @@ input {
 .NovaT, input {
     transition: all 0.3s ease;
 }
+
+
+.parteCuadrado {
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+    border-radius: 8px;
+    width: 500px;
+    height: 250px;
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
+                0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.parteCuadrado p:nth-child(1) {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.parteCuadrado > input {
+    margin-top: 5px;
+}
+
+.colores {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 30px; 
+    height: 15px; 
+    border: none; 
+    cursor: pointer;
+    padding: 0;
+    display: inline-block; 
+}
+
+.color-wrapper {
+    width: 50px;
+    height: 30px;
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+#color-picker::-webkit-color-swatch {
+    border: none;
+    background: transparent; 
+}
+
+.parteCuadrado > button {
+    margin-top: 20px;
+}
+
+
