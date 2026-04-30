@@ -3,23 +3,20 @@ export function renderGrafic(activitats) {
     if (!ctx) return;
 
     const dadesMesos = new Array(12).fill(0);
-    activitats.forEach(act => {
-        if (act.realitzada) {
-            const mes = new Date(act.fecha).getMonth();
-            dadesMesos[mes]++;
-        }
+    activitats.filter(a => a.realitzada).forEach(a => {
+        const mes = new Date(a.fecha).getMonth();
+        dadesMesos[mes]++;
     });
 
     if (window.myChart) window.myChart.destroy();
-
     window.myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
             datasets: [{
-                label: 'Tasques Completades',
+                label: 'Tasques Realitzades',
                 data: dadesMesos,
-                backgroundColor: '#4A90E2'
+                backgroundColor: 'rgba(54, 162, 235, 0.5)'
             }]
         }
     });
