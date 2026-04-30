@@ -1,6 +1,7 @@
 body {
     margin: 0px 0px;
     font-family: Verdana;
+    background-color: #F2F4F5;
 }
 
 :root {
@@ -63,6 +64,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    background-color: var(--text-main);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
                 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -131,6 +133,7 @@ input {
     width: 500px;
     height: 250px;
     padding: 0 20px;
+    background-color: var(--text-main);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
                 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -187,5 +190,28 @@ input {
 .parteCuadrado > button {
     margin-top: 20px;
 }
+
+.parteCrear {
+    margin-left: 35px;
+    border-radius: 8px;
+    width: 450px;
+    height: 800px;
+    padding: 0 20px;
+    background-color: var(--text-main);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
+                0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+    display: grid;
+}
+
+
+.parteCrear p:nth-child(1) {
+    font-size: 17px;
+    font-weight: normal;
+}
+
+
 
 
