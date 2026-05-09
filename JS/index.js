@@ -78,8 +78,15 @@ window.canviarEstat = (id) => {
 };
 
 window.borrar = (id) => {
-    const acts = storage.getActivitats().filter(a => a.id !== id);
-    storage.saveActivitats(acts);
+    const acts = storage.getActivitats();
+    const task = acts.find(a => a.id === id);
+    if (task && task.realitzada) {
+        task.realitzada = false;
+        storage.saveActivitats(acts);
+    } else {
+        const filtrades = acts.filter(a => a.id !== id);
+        storage.saveActivitats(filtrades);
+    }
     inicialitzar();
 };
 
