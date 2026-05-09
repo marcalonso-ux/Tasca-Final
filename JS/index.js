@@ -1,5 +1,6 @@
 import { storage } from './storage.js';
 import { renderGrafic } from './grafics.js';
+import { crearTasca } from './models.js';
 
 window.IrIndex = () => window.location.href = "index.html";
 window.IrCrear = () => window.location.href = "crear-tasca.html";
@@ -21,12 +22,9 @@ function renderLlista(llista) {
     acabades.innerHTML = '';
 
     const prioritatColor = {
-        'Alta': '#e74c3c',
-        'alta': '#e74c3c',
-        'Mitjana': '#f1c40f',
-        'mitjana': '#f1c40f',
-        'Baixa': '#2ecc71',
-        'baixa': '#2ecc71'
+        'Alta': '#e74c3c', 'alta': '#e74c3c',
+        'Mitjana': '#f1c40f', 'mitjana': '#f1c40f',
+        'Baixa': '#2ecc71', 'baixa': '#2ecc71'
     };
 
     const ordenada = [...llista].sort((a, b) => {
@@ -91,16 +89,7 @@ window.crearRapid = () => {
     if (!titol) return;
 
     const acts = storage.getActivitats();
-    const novaTasca = {
-        id: `task-${Date.now()}`,
-        titol: titol,
-        descripcio: '',
-        fecha: new Date().toISOString().split('T')[0],
-        categoria: { nom: 'General', color: '#cccccc' },
-        prioritat: 'Mitjana',
-        realitzada: false
-    };
-
+    const novaTasca = crearTasca({ titol });
     acts.push(novaTasca);
     storage.saveActivitats(acts);
     input.value = '';
