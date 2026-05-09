@@ -132,7 +132,6 @@ input {
     width: 100%;
     margin-top: 15px;
     margin-left: 85px;
-    overflow: hidden; 
 }
 
 .parteCuadrado {
@@ -244,4 +243,77 @@ input {
     height: 300px;
     max-height: 300px; 
     overflow: hidden;  
+}
+
+.tasca-card {
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: calc(28% - 8px);
+   box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tasca-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasca-titol {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.tasca-prioritat {
+    font-size: 12px;
+    color: #555;
+}
+
+.tasca-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    color: #fff;
+    width: fit-content;
+}
+
+.tasca-data {
+    font-size: 12px;
+    color: #777;
+}
+
+.tasca-card-bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.tasca-desc {
+    font-size: 12px;
+    color: #555;
+}
+
+.tasca-accions {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-check, .btn-trash {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px;
+}
+
+#tasques-pendents,
+#tasques-acabades {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
 }
