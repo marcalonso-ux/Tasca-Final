@@ -2,18 +2,16 @@ export function renderGrafic(activitats) {
     const ctx = document.getElementById('miGrafico');
     if (!ctx) return;
 
-    const totalMesos = new Array(12).fill(0);
     const realitzadesMesos = new Array(12).fill(0);
 
-    activitats.forEach(a => {
-        const mes = new Date(a.fecha).getMonth();
-        totalMesos[mes]++;
-        if (a.realitzada) realitzadesMesos[mes]++;
+    activitats.filter(a => a.realitzada).forEach(a => {
+        const fecha = a.fecha || a.data || '';
+        const mes = new Date(fecha).getMonth();
+        if (!isNaN(mes)) realitzadesMesos[mes]++;
     });
 
-    const proporcions = realitzadesMesos.map((r, i) =>
-        totalMesos[i] > 0 ? parseFloat((r / totalMesos[i]).toFixed(2)) : 0
-    );
+    const maxVal = Math.max(...realitzadesMesos, 1);
+    const maxEix = maxVal <= 1 ? 1 : Math.ceil(maxVal / 0.2) * 0.2;
 
     if (window.myChart) window.myChart.destroy();
 
@@ -23,7 +21,7 @@ export function renderGrafic(activitats) {
             labels: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
             datasets: [{
                 label: 'Tasques realitzades',
-                data: proporcions,
+                data: realitzadesMesos,
                 backgroundColor: 'rgba(173, 216, 230, 0.65)',
                 borderColor: 'rgba(100, 180, 210, 1)',
                 borderWidth: 1
@@ -33,23 +31,15 @@ export function renderGrafic(activitats) {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { display: true, position: 'top' },
-                tooltip: {
-                    callbacks: {
-                        label: (item) => {
-                            const mes = item.dataIndex;
-                            return `${realitzadesMesos[mes]} de ${totalMesos[mes]} tasques (${(item.raw * 100).toFixed(0)}%)`;
-                        }
-                    }
-                }
+                legend: { display: true, position: 'top' }
             },
             scales: {
                 y: {
                     min: 0,
-                    max: 1,
+                    max: maxEix + 0.2,
                     ticks: {
-                        stepSize: 0.1,
-                        callback: v => v.toFixed(1)
+                        stepSize: 0.2,
+                        callback: v => parseFloat(v.toFixed(1))
                     },
                     grid: { color: 'rgba(0,0,0,0.06)' }
                 },

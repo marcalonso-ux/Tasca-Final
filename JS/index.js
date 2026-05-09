@@ -20,8 +20,23 @@ function renderLlista(llista) {
     pendents.innerHTML = '';
     acabades.innerHTML = '';
 
-    llista.forEach(act => {
-        const color = act.color || act.categoria?.color || '#cccccc';
+    const prioritatColor = {
+        'Alta': '#e74c3c',
+        'alta': '#e74c3c',
+        'Mitjana': '#f1c40f',
+        'mitjana': '#f1c40f',
+        'Baixa': '#2ecc71',
+        'baixa': '#2ecc71'
+    };
+
+    const ordenada = [...llista].sort((a, b) => {
+        const fechaA = new Date(a.fecha || a.data || '');
+        const fechaB = new Date(b.fecha || b.data || '');
+        return fechaA - fechaB;
+    });
+
+    ordenada.forEach(act => {
+        const color = prioritatColor[act.prioritat] || '#cccccc';
         const categoriaNom = act.categoria?.nom || act.categoria || 'General';
         const fecha = act.fecha || act.data || '';
 
@@ -67,6 +82,28 @@ window.canviarEstat = (id) => {
 window.borrar = (id) => {
     const acts = storage.getActivitats().filter(a => a.id !== id);
     storage.saveActivitats(acts);
+    inicialitzar();
+};
+
+window.crearRapid = () => {
+    const input = document.querySelector('.escribir');
+    const titol = input.value.trim();
+    if (!titol) return;
+
+    const acts = storage.getActivitats();
+    const novaTasca = {
+        id: `task-${Date.now()}`,
+        titol: titol,
+        descripcio: '',
+        fecha: new Date().toISOString().split('T')[0],
+        categoria: { nom: 'General', color: '#cccccc' },
+        prioritat: 'Mitjana',
+        realitzada: false
+    };
+
+    acts.push(novaTasca);
+    storage.saveActivitats(acts);
+    input.value = '';
     inicialitzar();
 };
 
