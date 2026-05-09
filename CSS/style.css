@@ -22,6 +22,7 @@ body {
     position: sticky;
     top: 0;
     width: 225px;
+    min-width: 225px;
     height: 100vh;
     background-color: var(--blue-primary);
     color: var(--text-main);

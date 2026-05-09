@@ -6,13 +6,18 @@ window.IrCateg = () => window.location.href = "categories.html";
 
 document.addEventListener('DOMContentLoaded', () => {
     const selectCat = document.getElementById('opcionesCat');
-    const catsGuardades = JSON.parse(localStorage.getItem('categories_list')) || ["Estudis", "Feina", "Casa"];
+    const catsManuals = JSON.parse(localStorage.getItem('categories_list')) || ["Estudis", "Feina", "Casa"];
+    const activitats = storage.getActivitats();
+    const catsJSON = activitats
+        .map(a => a.categoria?.nom || a.categoria)
+        .filter(Boolean);
+    const totes = [...new Set([...catsManuals, ...catsJSON])];
 
     if (selectCat) {
-        selectCat.innerHTML = ''; // Limpiamos opciones estáticas
-        catsGuardades.forEach(cat => {
+        selectCat.innerHTML = '';
+        totes.forEach(cat => {
             const option = document.createElement('option');
-            option.value = cat; // Mantenemos el nombre original
+            option.value = cat;
             option.textContent = cat;
             selectCat.appendChild(option);
         });

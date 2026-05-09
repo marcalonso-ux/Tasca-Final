@@ -1,3 +1,5 @@
+let myChart = null;
+
 export function renderGrafic(activitats) {
     const ctx = document.getElementById('miGrafico');
     if (!ctx) return;
@@ -10,21 +12,30 @@ export function renderGrafic(activitats) {
         if (!isNaN(mes)) realitzadesMesos[mes]++;
     });
 
-    const maxVal = Math.max(...realitzadesMesos, 1);
-    const maxEix = maxVal <= 1 ? 1 : Math.ceil(maxVal / 0.2) * 0.2;
+    const maxVal = Math.max(...realitzadesMesos, 0);
+    const maxEix = Math.ceil((maxVal + 1) / 0.2) * 0.2;
+    
+    if (myChart) {
+        myChart.data.datasets[0].data = realitzadesMesos;
+        myChart.options.scales.y.max = maxEix;
+        myChart.update();
+        return;
+    }
 
-    if (window.myChart) window.myChart.destroy();
-
-    window.myChart = new Chart(ctx, {
-        type: 'bar',
+    myChart = new Chart(ctx, {
+        type: 'line',
         data: {
             labels: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
             datasets: [{
                 label: 'Tasques realitzades',
                 data: realitzadesMesos,
-                backgroundColor: 'rgba(173, 216, 230, 0.65)',
                 borderColor: 'rgba(100, 180, 210, 1)',
-                borderWidth: 1
+                backgroundColor: 'rgba(173, 216, 230, 0.2)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(100, 180, 210, 1)',
+                pointRadius: 4,
+                tension: 0,
+                fill: false
             }]
         },
         options: {
@@ -36,7 +47,7 @@ export function renderGrafic(activitats) {
             scales: {
                 y: {
                     min: 0,
-                    max: maxEix + 0.2,
+                    max: maxEix,
                     ticks: {
                         stepSize: 0.2,
                         callback: v => parseFloat(v.toFixed(1))
