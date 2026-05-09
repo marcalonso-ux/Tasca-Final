@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+
 <body>
     <section class="DivDos">
         <div class="sidebar">
@@ -32,8 +34,8 @@
                 <button class="NovaT">Crear Nova Tasca</button>
 
                 <div class="conjunt">
-                    <input type="text" class="escribir" placeholder="nom de l'activitat">
-                    <button class="NovaT">pujar</button>
+                    <input type="text" class="escribir" placeholder="Nom de l'activitat">
+                    <button class="NovaT" onclick="crearRapid()">Afegir</button>
                 </div>
             </div>
             <section class="pendent">
@@ -47,10 +49,12 @@
             </section>
         </section>
 
-        
+
     </section>
-    
+
     <script type="module" src="./JS/index.js"></script>
     <script type="module" src="./JS/storage.js"></script>
-    <script type="module" src="./JS/grafics.js"></script></body>
+    <script type="module" src="./JS/grafics.js"></script>
+</body>
+
 </html>

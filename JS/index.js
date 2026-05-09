@@ -5,17 +5,6 @@ window.IrIndex = () => window.location.href = "index.html";
 window.IrCrear = () => window.location.href = "crear-tasca.html";
 window.IrCateg = () => window.location.href = "categories.html";
 
-async function inicialitzar() {
-    const dadesActuals = storage.getActivitats();
-    if (dadesActuals.length === 0) {
-        await storage.importarDesdeJSON('dades/activitats_001.json');
-        await storage.importarDesdeJSON('dades/activitats_002.json');
-    }
-    const activitats = storage.getActivitats();
-    renderLlista(activitats);
-    renderGrafic(activitats);
-}
-
 function hexToRgba(hex, alpha) {
     if (!hex || !hex.startsWith('#')) return `rgba(200,200,200,${alpha})`;
     const r = parseInt(hex.slice(1,3), 16);
@@ -32,9 +21,12 @@ function renderLlista(llista) {
     acabades.innerHTML = '';
 
     llista.forEach(act => {
-        const color = act.color || '#cccccc';
+        const color = act.color || act.categoria?.color || '#cccccc';
+        const categoriaNom = act.categoria?.nom || act.categoria || 'General';
+        const fecha = act.fecha || act.data || '';
+
         const div = document.createElement('div');
-        div.className = 'tasca-card';
+        div.className = `tasca-card ${act.realitzada ? 'tasca-acabada' : ''}`;
         div.style.backgroundColor = hexToRgba(color, 0.15);
         div.style.borderLeft = `6px solid ${color}`;
         div.innerHTML = `
@@ -43,9 +35,9 @@ function renderLlista(llista) {
                 <span class="tasca-prioritat">${act.prioritat}</span>
             </div>
             <span class="tasca-badge" style="background-color: ${color}">
-                ${act.categoria}
+                ${categoriaNom}
             </span>
-            <span class="tasca-data">${act.fecha}</span>
+            <span class="tasca-data">${fecha}</span>
             <div class="tasca-card-bot">
                 <span class="tasca-desc">${act.descripcio}</span>
                 <div class="tasca-accions">
@@ -54,9 +46,14 @@ function renderLlista(llista) {
                 </div>
             </div>
         `;
-        div.className = `tasca-card ${act.realitzada ? 'tasca-acabada' : ''}`;
         (act.realitzada ? acabades : pendents).appendChild(div);
     });
+}
+
+async function inicialitzar() {
+    const activitats = storage.getActivitats();
+    renderLlista(activitats);
+    renderGrafic(activitats);
 }
 
 window.canviarEstat = (id) => {
@@ -75,12 +72,16 @@ window.borrar = (id) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     inicialitzar();
+
     const btnPujar = document.querySelector('.conjunt .NovaT');
     const inputUrl = document.querySelector('.escribir');
 
     if (btnPujar) {
         btnPujar.onclick = async () => {
-            await storage.importarDesdeJSON('dades/' + inputUrl.value);
+            const nom = inputUrl.value.trim();
+            if (!nom) return;
+            await storage.importarDesdeJSON('dades/' + nom);
+            inputUrl.value = '';
             inicialitzar();
         };
     }
