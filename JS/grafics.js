@@ -11,7 +11,6 @@ export function renderGrafic(activitats) {
         if (a.realitzada) realitzadesMesos[mes]++;
     });
 
-    // Proporció (0 a 1) — si no hi ha tasques aquell mes, deixa 0
     const proporcions = realitzadesMesos.map((r, i) =>
         totalMesos[i] > 0 ? parseFloat((r / totalMesos[i]).toFixed(2)) : 0
     );
