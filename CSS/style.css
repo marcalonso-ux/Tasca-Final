@@ -310,6 +310,17 @@ input {
     padding: 2px;
 }
 
+.tasca-acabada {
+    opacity: 0.6;
+    filter: grayscale(40%);
+    text-decoration: line-through;
+}
+
+.tasca-acabada .tasca-titol {
+    text-decoration: line-through;
+    color: #888;
+}
+
 #tasques-pendents,
 #tasques-acabades {
     display: flex;

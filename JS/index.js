@@ -54,6 +54,7 @@ function renderLlista(llista) {
                 </div>
             </div>
         `;
+        div.className = `tasca-card ${act.realitzada ? 'tasca-acabada' : ''}`;
         (act.realitzada ? acabades : pendents).appendChild(div);
     });
 }
